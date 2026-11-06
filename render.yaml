@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: so-thu-chi-google
+    runtime: docker
+    plan: 0.5c-512mb
+    region: singapore
+    numInstances: 1
+    healthCheckPath: /healthz
+    disk:
+      name: finance-state
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: APP_ORIGIN
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: TOKEN_KEY
+        sync: false
+      - key: DATABASE_PATH
+        value: /data/app.sqlite
+      - key: TRUST_PROXY
+        value: "1"
